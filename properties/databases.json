@@ -1,0 +1,56 @@
+{
+    "dbOleiros": {
+        "server": "LJSQLDEV01.lojackhq.com.ar",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "dbOleiros"
+    },
+    "Ventas": {
+        "server": "LJSQLDEVTEST02.lojackhq.com.ar:1533",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "Ventas"
+    },
+    "calipso_intdev01": {
+        "server": "ljsqldevtest02.lojackhq.com.ar",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "calipso_intdev01"
+    },
+    "Lojack_vehiculos": {
+        "server": "ljsqldevtest02.lojackhq.com.ar",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "Lojack_vehiculos"
+    },
+    "dbWorld_Car_Security": {
+        "server": "LJSQLDEV01.lojackhq.com.ar",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "dbWorld_Car_Security"
+    },
+    "Lojack": {
+        "server": "LJSQLDEVTEST02.lojackhq.com.ar:1533",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "Lojack"
+    },
+    "ATyC": {
+        "server": "LJSQLDEV01.lojackhq.com.ar",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "LJ_ATYC_Legales_dev"
+    },
+    "Boxes": {
+        "server": "LJSQLDEVTEST02.lojackhq.com.ar",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "LJ_Boxes"
+    },
+    "BPM_Boxes": {
+        "server": "LJSQLDEVTEST02.lojackhq.com.ar",
+        "user": "boxestestapp",
+        "password": "V2qHTqkkhD",
+        "database": "LJ_JBPM_Boxes"
+    }
+}

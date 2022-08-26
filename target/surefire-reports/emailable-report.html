@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>TestNG Report</title>
+<style type="text/css">table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}th,td {border:1px solid #009;padding:.25em .5em}th {vertical-align:bottom}td {vertical-align:top}table a {font-weight:bold}.stripe td {background-color: #E6EBF9}.num {text-align:right}.passedodd td {background-color: #3F3}.passedeven td {background-color: #0A0}.skippedodd td {background-color: #DDD}.skippedeven td {background-color: #CCC}.failedodd td,.attn {background-color: #F33}.failedeven td,.stripe .attn {background-color: #D00}.stacktrace {white-space:pre;font-family:monospace}.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}.invisible {display:none}</style>
+</head>
+<body>
+<table>
+<tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
+<tr><th colspan="8">Suite</th></tr>
+<tr><td><a href="#t0">Test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">271.504</td><td></td><td></td></tr>
+</table>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">testRunner.RunnerByTag</td><td><a href="#m0">runScenario</a></td><td rowspan="1">1661530122535</td><td rowspan="1">253001</td></tr></tbody>
+</table>
+<h2>Test</h2><h3 id="m0">testRunner.RunnerByTag#runScenario</h3><table class="result"><tr class="param"><th>Parameter #1</th><th>Parameter #2</th></tr><tr class="param stripe"><td>&quot;Instalacion de la solucion Strix flotas&quot;</td><td>&quot;Strix Flotas&quot;</td></tr><tr><th colspan="2">Exception</th></tr><tr><td colspan="2"><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //li//label[text()=&apos;Control de SDS&apos;] (tried for 30 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.1.4&apos;, revision: &apos;535d840ee2&apos;
+System info: host: &apos;AR01ENOT0090&apos;, ip: &apos;192.168.90.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;13.0.2&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 104.0.5112.102, chrome: {chromedriverVersion: 104.0.5112.79 (3cf3e8c8a07d..., userDataDir: C:\Users\gfranco\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:51629}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:51629/devtoo..., se:cdpVersion: 104.0.5112.102, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: a7dd377602f4adb343064a02522294cf
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at utils.WebBase.waitClick(WebBase.java:172)
+	at pages.TaskPage.filtroTareas(TaskPage.java:58)
+	at steps.TasksStep.seAccedeALaTareaDe(TasksStep.java:69)
+	at ✽.se accede a la tarea de: &quot;Control de SDS&quot;(file:///C:/GIT%20-%20Automatizacion%20Pruebas%20Boxes/src/test/resources/features/strix_flotas.feature:32)
+</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+</body>
+</html>
