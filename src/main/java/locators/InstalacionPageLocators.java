@@ -19,4 +19,12 @@ public interface InstalacionPageLocators {
     By BOTON_EDITAR_KILOMETRAJE= By.xpath("//button/span[text()='Editar']");
     By INPUT_KILOMETRAJE=By.id("edicionKilometraje:kilometraje");
     By GUARDAR_KILOMETRAJE=By.id("accionesEditarKilometraje:j_idt37");
+
+    By EDITAR_SOLUCION=By.id("solucionVendida:j_idt85:j_idt93");
+    By COMBOBOX_SOLUCION= By.id("formVenta:solucion_input");
+    By TEXTO_MOTIVO=By.id("formMotivo:motivo");
+    By BOTON_EDITAR_VENTA=By.id("accionesEditarVenta:j_idt48");
+
+    By BOTON_COMERCIAL= By.xpath("//*[@id='tabs']/ul/li[4]");
+
 }

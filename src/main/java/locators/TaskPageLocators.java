@@ -60,7 +60,13 @@ public interface TaskPageLocators {
     By EDITAR_FORMA_DE_PAGO = By.id("tabs:facturacion:formaDePago:j_idt311");
     By CREAR_NUEVO_MEDIO_DE_PAGO = By.xpath("//button[@title='Crear nuevo']");
     By TIPO_FORMA_DE_PAGO = By.id("formaDePago:tipoFormaDePago_label");
+    By TIPO_DE_PAGO_DEBITO_DIRECTO = By.id("formaDePago:tipoFormaDePago_2");
     By SIN_MEDIO_DE_PAGO = By.id("formaDePago:tipoFormaDePago_3");
+    By INPUT_CBU_PAGO_DIRECTO = By.id("formaDePago:j_idt49:cbuPagoDirecto");
+    By COMBOBOX_TIPO_CUENTA= By.id("formaDePago:j_idt49:tipoDeCuentaPagoDirecto_label");
+    By COMBOBOX_TIPO_DE_PAGO= By.id("formaDePago:j_idt49:tipoDeCuentaPagoDirecto_1");
+    By EDITAR_TIPO_DE_PAGO= By.id("accionesEditarFormaDePago:j_idt64");
+
     By GUARDAR_FORMA_DE_PAGO = By.xpath("//button//span[text()='Guardar']");
     By OPERACIONAL = By.xpath("//li/a[text()='Operacional']");
     By AGREGAR_PERSONA_AUTORIZADA = By.id("tabs:j_idt436:formPersonaAutorizada:j_idt437");
@@ -91,4 +97,13 @@ public interface TaskPageLocators {
     By COMBO_CLAS2 = By.xpath( "//div[@id= 'j_idt131:j_idt132:gestionDeCalidadClasificacion2']");
     By OPCION_CLAS2 = By.xpath("//li[@id='j_idt131:j_idt132:gestionDeCalidadClasificacion2_1' and @data-label='%s']");
 
+    By EDITAR_UPGRADE_SOLUCION=By.id("tabs:j_idt314:formDatosComerciales:j_idt366:j_idt389");
+    By POPUP_IFRAME=By.tagName("iframe");
+    By COMBO_UPGRADE_SOLUCION=By.id("formVenta:solucion");
+    By GUARDAR_UPGRADE_SOLUCION=By.id("accionesEditarVenta:j_idt78");
+    By VOLVER_TAREAS = By.id("botones:j_idt523");
+    By BOTON_LISTA_PRECIOS=By.id("formVenta:listaDePrecios");
+    By BOTON_LISTA_PRECIOS1=By.id("formVenta:listaDePrecios_1");
+    By BOTON_ACUERDO_SPONSOREO=By.id("formVenta:acuerdoSponsoreo_label");
+    By BOTON_ACUERDO_SPONSOREO121=By.id("formVenta:acuerdoSponsoreo_121");
 }

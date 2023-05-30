@@ -2,18 +2,17 @@ package pages;
 
 import database.business.BoxesDB;
 import database.business.Servicio;
-import io.github.cdimascio.dotenv.Dotenv;
 import io.qameta.allure.Step;
 import locators.LandingPageLocators;
 import org.openqa.selenium.WebDriver;
-import utils.EnvironmentConsumer;
 import utils.GlobalData;
-import utils.WebBase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 import static utils.GlobalData.*;
-import static utils.GlobalData.motor;
 
 public class LandingPage extends BasePage implements LandingPageLocators {
     public LandingPage(WebDriver driver) {
@@ -47,13 +46,16 @@ public class LandingPage extends BasePage implements LandingPageLocators {
 
     @Step("Generar solicitud")
     public void generarSolicitud(Servicio servicio) {
+        Date fecha = new Date(Calendar.getInstance().getTimeInMillis());
+        SimpleDateFormat formatter = new SimpleDateFormat("ddMMHHmm");
         Random aleatorio = new Random(System.currentTimeMillis());
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String dominioPrefijo="ZZ";
         String dominioSufijo= String.valueOf(alphabet.charAt(aleatorio.nextInt(alphabet.length())))+String.valueOf(alphabet.charAt(aleatorio.nextInt(alphabet.length())));
         String dominioNumeros = String.valueOf(aleatorio.nextInt(899)+100);
 
-        String dni = String.valueOf(aleatorio.nextInt(43000000)+7000000);
+        String dni = formatter.format(fecha);
+       // String dni = String.valueOf(aleatorio.nextInt(43000000)+7000000);
         String dominio = dominioPrefijo+dominioNumeros+dominioSufijo;
         int nroSolicitud = BoxesDB.generarSolicitud(servicio, dni, dominio);
 

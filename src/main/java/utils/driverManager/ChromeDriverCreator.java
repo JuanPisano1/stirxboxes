@@ -4,7 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import utils.EnvironmentConsumer;
@@ -28,7 +27,9 @@ public class ChromeDriverCreator extends BrowserManager {
 				"--disable-browser-side-navigation", "--disable-cache", "--disable-client-side-phishing-detection",
 				"--disable-default-apps", "--disable-extensions", "--disable-infobars", "--disable-notifications",
 				"--disable-offline-load-stale-cache", "--disable-popup-blocking", "--disable-web-security",
-				"--ignore-certificate-errors", "--no-sandbox", "--start-maximized", "--test-type=browser");
+				"--ignore-certificate-errors", "--no-sandbox", "--start-maximized", "--test-type=browser","force-device-scale-factor=0.75", "high-dpi-support=0.75"
+				,"--remote-allow-origins=*"
+		);
 		try{
 			Dotenv settings = EnvironmentConsumer.getInstance("settings");
 			String lang  = Objects.requireNonNull(settings.get("Language"));

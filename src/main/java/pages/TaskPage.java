@@ -1,19 +1,12 @@
 package pages;
 
-import database.business.BoxesDB;
-import database.business.Servicio;
 import io.qameta.allure.Step;
 import locators.TaskPageLocators;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.GlobalData;
 import utils.LocatorGenerator;
-
-import java.util.Random;
-
-import static utils.GlobalData.*;
 
 public class TaskPage extends BasePage implements TaskPageLocators {
 
@@ -88,8 +81,13 @@ public class TaskPage extends BasePage implements TaskPageLocators {
 
     @Step("Asigna la tarea")
     public void assignJob(){
-        waitFrameAndSwitch(IFRAME);
-        waitClick(BUTTON_TOMAR_TAREA);
+        try {
+            waitFrameAndSwitch(IFRAME);
+            waitClick(BUTTON_TOMAR_TAREA);
+        }catch (Exception e) {
+            System.out.println("No es necesario volver a tomar la tarea");
+        }
+
         switchBackToDefaultContent();
         try{
             loginPage.revalidaLogin();
@@ -106,6 +104,9 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitLoading();
     }
 
+
+
+
     @Step("Elegir contrato")
     public void registrarEmpresaYProducto(String contrato, String producto){
         waitClick(COMBO_CONTRATO);
@@ -117,15 +118,16 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitClick(BOTON_ACEPTAR_INSTALACION);
     }
 
-    @Step("Tomar tarea Control SDS")
-    public void registrarDatosCliente(String tipoCliente, String condImpositiva){
+
+    public void registrarDatosClienteporCia(String tipoCliente, String condImpositiva){
 
         waitClick(EDITAR_DATOS_GENERALES);
 
         waitFrameAndSwitch(By.tagName("iframe"));
+
         waitClick(TIPO_DE_CLIENTE);
 
-        waitClick(By.xpath(String.format("//ul[@id='formDetalleCliente:clienteTipoCliente_items']/li[contains(@data-label, '%s')]",tipoCliente)));
+        waitClick(LocatorGenerator.addMissignValue(CLIENTE_POR_CIA_DE_SEGURO, tipoCliente));
 
         waitClick(CONDICION_IMPOSITIVA);
 
@@ -164,10 +166,68 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitClick(GUARDAR_TELEFONOS);
     }
 
+
+
+
+
+    @Step("Tomar tarea Control SDS")
+    public void registrarDatosCliente(String tipoCliente, String condImpositiva){
+
+        waitClick(EDITAR_DATOS_GENERALES);
+        waitLoading();
+        waitFrameAndSwitch(By.tagName("iframe"));
+        waitLoading();
+        waitClick(TIPO_DE_CLIENTE);
+
+        waitClick(By.xpath(String.format("//ul[@id='formDetalleCliente:clienteTipoCliente_items']/li[contains(@data-label, '%s')]",tipoCliente)));
+
+        waitClick(CONDICION_IMPOSITIVA);
+
+        waitClick(By.xpath(String.format("//ul[@id='formDetalleCliente:clienteCondicionImpositiva_items']/li[contains(@data-label, '%s')]", condImpositiva)));
+
+        waitClick(GENERO);
+
+        waitClick(OPCION_M);
+
+        waitClick(GUARDAR_DATOS_GENERALES);
+
+        switchBackToDefaultContent();
+        waitLoading();
+
+        // 1165142077
+
+        String nroTelefono = getAttribute("value", TELEFONO_SIN_NORMALIZAR);
+
+        waitClick(AGREGAR_TELEFONO);
+        waitLoading();
+        waitFrameAndSwitch(By.xpath("//div[@id='tabs:j_idt129:j_idt175:formTelefonos:telefonos:j_idt195_dlg']//iframe"));
+        waitLoading();
+        waitClick(TIPO_DE_CONTACTO);
+        waitLoading();
+        waitClick(CELULAR_TIPO_DE_CONTACTO);
+
+        sleepSeconds(2); // NECESARIO
+        waitClick(BOTON_TELEFONO);
+        waitLoading();
+        switchBackToDefaultContent();
+        //*[@id="telefono:j_idt46_dlg"]/div[2]/iframe
+        waitFrameAndSwitch(By.xpath("//div[@id='telefono:j_idt46_dlg']//iframe"));
+        waitType(NUMERO_,nroTelefono);
+        waitClick(BOTON_NORMALIZAR);
+        waitLoading();
+        waitClick(TILDE_VALIDAR);
+        switchBackToDefaultContent();
+        try{
+        waitFrameAndSwitch(By.tagName("iframe"));}catch(Exception e) {}
+        waitClick(GUARDAR_TELEFONOS);
+    }
+
     @Step("Registrar datos del Identificable")
     public void registrarDatosIdentificable(String uso, String color){
         switchBackToDefaultContent();
+        waitLoading();
         waitClick(IDENTIFICABLE);
+        waitLoading();
         waitClick(EDITAR);
         waitFrameAndSwitch(By.tagName("iframe"));
 
@@ -199,21 +259,22 @@ public class TaskPage extends BasePage implements TaskPageLocators {
 
     @Step("Registrar datos de Facturacion")
     public void registrarDatosFacturacion(){
+
         waitClick(FACTURACION);
+        waitLoading();
         waitClick(EDITAR_FORMA_DE_PAGO);
-
         waitFrameAndSwitch(By.tagName("iframe"));
-
         waitClick(CREAR_NUEVO_MEDIO_DE_PAGO);
         try{
             Thread.sleep(2000);
         }catch(Exception e){
 
         }
-        waitLoading();
+        waitLoading();   //*[@id="medioDePago:mediosDePagoEncontrados:j_idt45_dlg"]/div[2]/iframe
 //            WebElement frameFormaDePago = buscarFrameDeElemento(TIPO_FORMA_DE_PAGO);
         switchBackToDefaultContent();
-        waitFrameAndSwitch(By.xpath("//div[@id='medioDePago:mediosDePagoEncontrados:j_idt43_dlg']//iframe"));
+        waitFrameAndSwitch(By.xpath("//div[@id='medioDePago:mediosDePagoEncontrados:j_idt45_dlg']//iframe"));  //43
+
         waitClick(TIPO_FORMA_DE_PAGO);
         try{
             Thread.sleep(2000);
@@ -221,13 +282,20 @@ public class TaskPage extends BasePage implements TaskPageLocators {
 
         }
 
-        waitClick(SIN_MEDIO_DE_PAGO);
+        try {
+            waitClick(SIN_MEDIO_DE_PAGO);
+            waitClick(GUARDAR_FORMA_DE_PAGO);
+        }catch (Exception e){}
 
-
-        waitLoading();
-
-
-        waitClick(GUARDAR_FORMA_DE_PAGO);
+        try {
+            waitClick(TIPO_DE_PAGO_DEBITO_DIRECTO);
+            waitClearType(INPUT_CBU_PAGO_DIRECTO,"7765859311100051318636");
+            waitClick(COMBOBOX_TIPO_CUENTA);
+            waitClick(COMBOBOX_TIPO_DE_PAGO);
+            waitLoading();
+           // waitFrameAndSwitch(By.xpath("//*[@id='medioDePago:mediosDePagoEncontrados:j_idt45_dlg']/div[2]/iframe"));
+            waitClick(EDITAR_TIPO_DE_PAGO);
+        }catch (Exception e){}
 
         waitLoading();
 
@@ -273,29 +341,29 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitClick(TIPO_DE_CONTACTO);
         waitClick(CELULAR_TIPO_DE_CONTACTO);
 
-        sleepSeconds(2); // NECESARIO
+        sleepSeconds(3); // NECESARIO
         waitClick(BOTON_TELEFONO);
         waitLoading();
         switchBackToDefaultContent();
-
+        sleepSeconds(3);
         waitFrameAndSwitch(By.xpath("//div[@id='telefono:j_idt46_dlg']//iframe"));
 
         String nroTelefonoPersonaAutorizada = "1560101049";
         waitType(NUMERO_,nroTelefonoPersonaAutorizada);
-
+        sleepSeconds(3);
         waitClick(BOTON_NORMALIZAR);
-
+        sleepSeconds(3);
         waitClick(TILDE_VALIDAR);
 
         switchBackToDefaultContent();
         waitFrameAndSwitch(1);
-
+        sleepSeconds(3);
         waitClick(GUARDAR_TELEFONOS);
 
         waitLoading();
         switchBackToDefaultContent();
         waitFrameAndSwitch(By.tagName("iframe"));
-
+        sleepSeconds(3);
         waitClick(VOLVER);
 
 
@@ -320,6 +388,9 @@ public class TaskPage extends BasePage implements TaskPageLocators {
 
     @Step("Cliente tiene firmada electronicamente la SDS")
     public void firmaElectronicaSDS(){
+        try{
+            waitClick(By.id("//*[@id='accionesEditarFormaDePago:j_idt64']/span"));
+        }catch(Exception e){}
         waitClick(BOTON_SI_ACEPTAR_FIRMA);
 
     }
@@ -348,7 +419,7 @@ public class TaskPage extends BasePage implements TaskPageLocators {
 
     @Step("Finalizar control SDS")
     public void finalizarSDS(){
-        //waitLoading();
+        waitLoading();
         waitClick(FINALIZAR);
     }
 
@@ -358,6 +429,48 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitClick(FINALIZAR_CIERRE);
     }
 
+    public void upgradeSolucion(String solucion) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        waitLoading();
+        waitClick(EDITAR_UPGRADE_SOLUCION);
+        waitLoading();
+        waitFrameAndSwitch(POPUP_IFRAME);
+        waitLoading();
+        waitClick(COMBO_UPGRADE_SOLUCION);
+        waitClick(By.id("formVenta:solucion_7"));
+        waitLoading();
+        /*
+        try {
+            Robot robot = new Robot();
+            for (int i = 0; i < 6; i++) {
+                robot.keyPress(KeyEvent.VK_CONTROL);
+                robot.keyPress(KeyEvent.VK_SUBTRACT);
+                robot.keyRelease(KeyEvent.VK_SUBTRACT);
+                robot.keyRelease(KeyEvent.VK_CONTROL);
+            }
+        }
+        catch (AWTException e)
+        {
+            e.printStackTrace();
+        }
+        */
+
+        //jsExecutor.executeScript("document.body.style.zoom='75%'");
+        //waitFrameAndSwitch(POPUP_IFRAME);
+        waitClick(BOTON_LISTA_PRECIOS);
+        sleepSeconds(2);
+        waitClick(BOTON_LISTA_PRECIOS1);
+        sleepSeconds(2);
+       jsExecutor.executeScript("window.scrollBy(0,1000)");
+        waitClick(BOTON_ACUERDO_SPONSOREO);
+        sleepSeconds(2);
+        waitClick(BOTON_ACUERDO_SPONSOREO121);
+        waitClick(GUARDAR_UPGRADE_SOLUCION);
+
+        waitLoading();
+        waitClick(VOLVER_TAREAS,2);
+
+    }
 
 
 

@@ -3,17 +3,18 @@ Feature: Recupero GPS
 
   Background:
    Given Genera una solicitud para el servicio "Recupero" y espera 60 segundos
-#    Given un turno de Instalacion para la solucion "RECUPERO"
+   # Given un turno de Instalacion para la solucion "RECUPERO"
     When Ingresa a la pagina de Boxes
     And Selecciona opcion login
     And Ingresa credenciales para 'ale' y selecciona ingresar
     Then Valida que se ecuentra en correctamente logueado
 
   @Recupero
-  Scenario: Instalacion de la solucion "Recupero GPS" por compania de seguros
+  Scenario: Instalacion de la solucion 'Recupero GPS' por compania de seguros
     Given un turno de Instalacion para la solucion "Recupero"
     When se filtran tareas por vehiculo
-#    When Selecciona un vehiculo con dominio 'ZZ869IT'
+   #When Selecciona un vehiculo con dominio 'ZZ777EM'
+
     And se accede a la tarea de: "Recepción"
     And se accede a la tarea de: "Instalación"
     And Selecciona la opcion 'GPS'
@@ -40,7 +41,7 @@ Feature: Recupero GPS
     And se filtran tareas por vehiculo
     And se accede a la tarea de: "Cierre"
     And Realizar Cierre
-#    When se prueban asserts con Dominio: "ZZ202WT" Solicitud ID: "482468470" DNI: "41979010" GPS: "900000000000084" VLU: ""
+   #When se prueban asserts con Dominio: "ZZ777EM" Solicitud ID: "482550662" DNI: "03051300" GPS: "900100000000286" VLU: ""
     Then se imprimen los datos de la prueba y se espera 20 segundos
     And se verifica en Calipso que el equipo "GPS" haya quedado asociado al vehiculo
     And se verifica en Calipso el plan "PL_RECUPERO" y el servicio "SE_RECUPERO". Company ID "COM_CARSECURITY"

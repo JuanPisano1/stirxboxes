@@ -3,19 +3,21 @@ Feature: Estandar + VLU
 
   Background:
     Given Genera una solicitud para el servicio "ESTANDAR" y espera 60 segundos
-#    Given un turno de Instalacion para la solucion "ESTANDAR"
+    #Given un turno de Instalacion para la solucion "ESTANDAR"
     When Ingresa a la pagina de Boxes
     And Selecciona opcion login
     And Ingresa credenciales para 'ale' y selecciona ingresar
     Then Valida que se ecuentra en correctamente logueado
 
   @Estandar
-  Scenario: Instalacion de la solucion "Estandar" con servicio adicional Recupero VLU
+  Scenario: Instalacion de la solucion 'Estandar' con servicio adicional Recupero VLU
     Given un turno de Instalacion para la solucion "ESTANDAR"
     When se filtran tareas por vehiculo
-#    When Selecciona un vehiculo con dominio 'AB781VZ'
+    #When Selecciona un vehiculo con dominio 'ZZ580XG'
+
     And se accede a la tarea de: "Recepción"
     And se accede a la tarea de: "Instalación"
+
     And se agrega el servicio "Recupero VLU"
     And Selecciona la opcion 'GPS'
     And selecciona empresa 'Oleiros'
@@ -27,6 +29,7 @@ Feature: Estandar + VLU
     And ingresa numero de serie de 'VLU' valido
     And agregar servicio "Recupero VLU"
     And completar Ubicacion 'Piso' y Posicion 'Piso conductor'
+
     And valida que 'Monitoreo Vehicular' tenga tilde verde
     And valida que 'Recupero VLU' tenga tilde verde
     And edita el kilometraje
@@ -47,7 +50,7 @@ Feature: Estandar + VLU
     And se filtran tareas por vehiculo
     And se accede a la tarea de: "Cierre"
     And Realizar Cierre
-#    When se prueban asserts con Dominio: "ZZ379PI" Solicitud ID: "482468444" DNI: "27114921" GPS: "900000000000035" VLU: "99A035"
+    #When se prueban asserts con Dominio: "ZZ667AK" Solicitud ID: "482550685" DNI: "04051308" GPS: "900100000000231" VLU: "0DC8AB5"
     Then se imprimen los datos de la prueba y se espera 20 segundos
     And se verifica en Calipso que el equipo "GPS" haya quedado asociado al vehiculo
     And se verifica en Calipso que el equipo "VLU" haya quedado asociado al vehiculo

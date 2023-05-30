@@ -21,6 +21,10 @@ public class BoxesDB {
                 return generarSolicitudStrixFlotas(dni, dominio);
             case ESTANDAR:
                 return generarSolicitudEstandar(dni, dominio);
+            case MASIVO:
+                return generarSolicitudMasivo(dni, dominio);
+            case FULL:
+                return generarSolicitudFull(dni, dominio);
             default:
                 throw new IllegalStateException("No se puede generar solicitud. Servicio no encontrado: " + servicio+ "\nServicios disponibles: 'RECUPERO', 'STRIX_AUTO', 'STRIX_MOTO', 'STRIX_FLOTAS'");
         }
@@ -38,6 +42,10 @@ public class BoxesDB {
                 return obtenerNroSerieGPSStrixMoto();
             case STRIX_FLOTAS:
                 return obtenerNroSerieGPSStrixFlotas();
+            case MASIVO:
+                return obtenerNroSerieGPSMasivo();
+            case FULL:
+                return obtenerNroSerieGPSFull();
             default:
                 throw new IllegalStateException("No se puede obtener Nro. de serie del GPS. Servicio no encontrado: " + servicio+ "\nServicios disponibles: 'RECUPERO', 'STRIX_AUTO', 'STRIX_MOTO', 'STRIX_FLOTAS', 'ESTANDAR_VLU'");
         }
@@ -265,6 +273,90 @@ public class BoxesDB {
         return 0;
     }
 
+    private static int generarSolicitudMasivo(String dni, String dominio){
+        String storeProcedureTemplate =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                        "<Solicitud Observaciones=\"INSTALACION MASIVO\" TipoEntidad=\"10\">\n" +
+                        "    <Cliente Apellido=\"PEREZ\" Documento=\"<NRO_DOCUMENTO_REEMPLAZAR>\" Email=\"<NRO_DOMINIO_REEMPLAZAR>_<NRO_DOCUMENTO_REEMPLAZAR>@lacueva.com\" Nombre=\"RATON\" Telefono=\"1165142077\">\n" +
+                        "        <Direccion Altura=\"2944\" Calle=\"CARRANZA ADOLFO PEDRO\" CodigoPostal=\"C1417HFN\" EntreCalle1=\"AVENIDA NAZCA\" EntreCalle2=\"HELGUERA\" IDLocalidad=\"59652\" IDPartido=\"59652\" IDProvincia=\"59650\" Latitud=\"-34.6079085714286\" Localidad=\"CIUDAD AUTONOMA BUENOS AIRES\" Longitud=\"-58.48497\" Provincia=\"CIUDAD AUT. DE BUENOS AIRES\"/>\n" +
+                        "    </Cliente>\n" +
+                        "    <Vehiculo Anio=\"2009\" CiaSSN=\"-1\" Dominio=\"<NRO_DOMINIO_REEMPLAZAR>\" IDMarca=\"12\" Marca=\"CHEVROLET\" IDModelo=\"90005\" Modelo=\"MERIVA 1.8 GL PLUS AB\" IDMarcaModelo=\"450336\" IDTipoVehiculo=\"1\" Valor=\"895000\" Color=\"8\"/>\n" +
+                        "    <Turno IDProducto=\"2110795\" IDTarea=\"21\" InstalacionLugar=\"1\" IDUnidadOperativa=\"47055924\" Producto=\"GPS\" Solucion=\"PL_MASIVO\" Vendedor=\"654\" AcuerdoTipoCanal=\"10\" CanalExterno=\"154\" Campania=\"14\" ListaDePrecio=\"LP_TYC_0431\">\n" +
+                        "        <DireccionInstalacion TipoDomicilio=\"1\" Altura=\"2944\" Calle=\"CARRANZA ADOLFO PEDRO\" CodigoPostal=\"C1417HFN\" Departamento=\"\" EntreCalle1=\"AVENIDA NAZCA\" EntreCalle2=\"HELGUERA\" IDLocalidad=\"59652\" IDPartido=\"59652\" IDProvincia=\"59650\" Latitud=\"-34.6079085714286\" Localidad=\"CIUDAD AUTONOMA BUENOS AIRES\" Longitud=\"-58.48497\" Partido=\"CAPITAL FEDERAL\" Provincia=\"CAPITAL FEDERAL\" Telefono=\"1165142077\"/>\n" +
+                        "    </Turno>\n" +
+                        "</Solicitud>\n";
+
+        String query = "SELECT TOP 1 Turno_ID, Titulo\n" +
+                "  FROM Turnos\n" +
+                "  where titulo = '<NRO_DOMINIO_REEMPLAZAR>'";
+
+        query = query.replace("<NRO_DOMINIO_REEMPLAZAR>",dominio);
+
+        storeProcedureTemplate = storeProcedureTemplate.replace("<NRO_DOCUMENTO_REEMPLAZAR>",dni);
+        storeProcedureTemplate = storeProcedureTemplate.replace("<NRO_DOMINIO_REEMPLAZAR>",dominio);
+
+        try {
+            int nroSolicitud = Database.executeStoredProcedureGenerarSolicitud("Ventas",  storeProcedureTemplate);
+
+            JSONArray dbresponse = Database.executeQueryJSON("Ventas",query);
+            String titulo  = Database.getValue(dbresponse,0,"Titulo");
+
+            if(!titulo.isEmpty()) return nroSolicitud;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return 0;
+    }
+
+    private static int generarSolicitudFull(String dni, String dominio){
+        String storeProcedureTemplate =
+                "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                        "<Solicitud Observaciones=\"INSTALACION FULL\" TipoEntidad=\"10\">\n" +
+                        "    <Cliente Apellido=\"PEREZ\" Documento=\"<NRO_DOCUMENTO_REEMPLAZAR>\" Email=\"<NRO_DOMINIO_REEMPLAZAR>_<NRO_DOCUMENTO_REEMPLAZAR>@lacueva.com\" Nombre=\"RATON\" Telefono=\"1165142077\">\n" +
+                        "        <Direccion Altura=\"2944\" Calle=\"CARRANZA ADOLFO PEDRO\" CodigoPostal=\"C1417HFN\" EntreCalle1=\"AVENIDA NAZCA\" EntreCalle2=\"HELGUERA\" IDLocalidad=\"59652\" IDPartido=\"59652\" IDProvincia=\"59650\" Latitud=\"-34.6079085714286\" Localidad=\"CIUDAD AUTONOMA BUENOS AIRES\" Longitud=\"-58.48497\" Provincia=\"CIUDAD AUT. DE BUENOS AIRES\"/>\n" +
+                        "    </Cliente>\n" +
+                        "    <Vehiculo Anio=\"2009\" CiaSSN=\"-1\" Dominio=\"<NRO_DOMINIO_REEMPLAZAR>\" IDMarca=\"12\" Marca=\"CHEVROLET\" IDModelo=\"90005\" Modelo=\"MERIVA 1.8 GL PLUS AB\" IDMarcaModelo=\"450336\" IDTipoVehiculo=\"1\" Valor=\"895000\" Color=\"8\"/>\n" +
+                        "    <Turno IDProducto=\"2110795\" IDTarea=\"21\" InstalacionLugar=\"1\" IDUnidadOperativa=\"47055924\" Producto=\"GPS\" Solucion=\"PL_FULL\" Vendedor=\"654\" AcuerdoTipoCanal=\"10\" CanalExterno=\"154\" Campania=\"14\" ListaDePrecio=\"LP_TYC_0431\">\n" +
+                        "        <DireccionInstalacion TipoDomicilio=\"1\" Altura=\"2944\" Calle=\"CARRANZA ADOLFO PEDRO\" CodigoPostal=\"C1417HFN\" Departamento=\"\" EntreCalle1=\"AVENIDA NAZCA\" EntreCalle2=\"HELGUERA\" IDLocalidad=\"59652\" IDPartido=\"59652\" IDProvincia=\"59650\" Latitud=\"-34.6079085714286\" Localidad=\"CIUDAD AUTONOMA BUENOS AIRES\" Longitud=\"-58.48497\" Partido=\"CAPITAL FEDERAL\" Provincia=\"CAPITAL FEDERAL\" Telefono=\"1165142077\"/>\n" +
+                        "    </Turno>\n" +
+                        "</Solicitud>\n";
+
+        String query = "SELECT TOP 1 Turno_ID, Titulo\n" +
+                "  FROM Turnos\n" +
+                "  where titulo = '<NRO_DOMINIO_REEMPLAZAR>'";
+
+        query = query.replace("<NRO_DOMINIO_REEMPLAZAR>",dominio);
+
+        storeProcedureTemplate = storeProcedureTemplate.replace("<NRO_DOCUMENTO_REEMPLAZAR>",dni);
+        storeProcedureTemplate = storeProcedureTemplate.replace("<NRO_DOMINIO_REEMPLAZAR>",dominio);
+
+        try {
+            int nroSolicitud = Database.executeStoredProcedureGenerarSolicitud("Ventas",  storeProcedureTemplate);
+
+            JSONArray dbresponse = Database.executeQueryJSON("Ventas",query);
+            String titulo  = Database.getValue(dbresponse,0,"Titulo");
+
+            if(!titulo.isEmpty()) return nroSolicitud;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return 0;
+    }
+
     public static String obtenerNroDeSolicitud(String dominio){
         String query = "SELECT TOP 1 Turno_ID, Titulo\n" +
                 "  FROM Turnos\n" +
@@ -288,7 +380,7 @@ public class BoxesDB {
         return "";
     }
 
-    private static String obtenerNroSerieGPSRecupero(){
+   /* private static String obtenerNroSerieGPSRecupero(){
         String query =
                 "SELECT\n" +
 //          "ARTS_ARTICULO_EMP Articulo, ARTS_NOMBRE Descripcion, PART_PARTIDA_EMP Partida_Empresa, SDPP_DEPOSITO Nro_Deposito, DPOS_NOMBRE Deposito, PART_CLASIF_1 Estado_Equipo, STOC_CA05.CA05_CLASIF_5 Id_Tipo_Equipo, STOC_CA05.CA05_NOMBRE Tipo_Equipo\n" +
@@ -343,6 +435,59 @@ public class BoxesDB {
 
         return result;
     }
+
+    */
+
+    // script para buscar gps s15
+    private static String obtenerNroSerieGPSRecupero(){
+        String query =
+                "SELECT  TOP 1 PART_PARTIDA_EMP Partida_Empresa\n" +
+                        "FROM STOC_ARTS\n" +
+                        "JOIN STOC_PART ON PART_ARTICULO = ARTS_ARTICULO\n" +
+                        "JOIN STOC_SDPP ON SDPP_PARTIDA = PART_PARTIDA\n" +
+                        "JOIN STOC_DPOS ON DPOS_DEPOSITO = SDPP_DEPOSITO\n" +
+                        "JOIN STOC_STDP ON STDP_ARTICULO = ARTS_ARTICULO AND STDP_DEPOSITO = SDPP_DEPOSITO\n" +
+                        "JOIN STOC_CA05 ON ARTS_CLASIF_5 = STOC_CA05.CA05_CLASIF_5\n" +
+                        "WHERE PART_CLASIF_1='NNS'\n" +
+                        "AND SDPP_STOCK_ACT > 0\n" +
+                        "AND STDP_STOCK_ACT > 0\n" +
+                        "AND SDPP_DEPOSITO = 179\n" +
+                        "and STOC_CA05.CA05_NOMBRE = 'S15'\n" +
+                        "and STOC_PART.PART_PARTIDA_EMP not in ('ID868850021064570','ID868850021356406','ID898880000000004','ID898880000000005')\n" +
+                        "AND ARTS_ARTICULO_EMP IN ('KCARGMT','KCHGS15','KGMT200','KGPS15M','KGPSS15','KIT10DS',\n" +
+                        "'KIT15DS','KIT16DS','KIT2630','KITCAR2','KITGE10','KITGE11','KITGS16','KITQ200',\n" +
+                        "'KITS6FW','KITS6SS','KLMU200','KS15MDS','KTG2630','KTGG200','KTGS15B','KTLMU2','KITGS23',\n" +
+                        "'KCHGS15', 'KIT10DS', 'KIT15DS','KIT16DS', 'KIT17DS', 'KITGE10', 'KITGS10', 'KITGS15', 'KITGS16', 'KITGS17', 'KITGS23', 'KITS6FW','KTGS15B',\n" +
+                        "'KITQ200', 'KITQ300','KIT2631','KIT2630','KCARGMT','KGMT200','KITQ200','KITQ300','KITCAR2','KLMU200','KIT2631','KIT2630', 'KCAR920','KCARGMT',\n" +
+                        "'KCARGV5', 'KCHGS15','KGMT200', 'KGPS15M', 'KGSS15M','KIT10DS','KIT15DS','KIT16DS','KIT17DS','KIT2630','KIT2631','KITB920','KITCAR2','KITQ200',\n" +
+                        "'KITQ300','KITS6FW','KLMU200','KS15MDS','KTGS15B')\n" +
+                        "AND NOT EXISTS\n" +
+                        "(SELECT *\n" +
+                        "FROM [LJSQLDEVTEST02,1433].calipso_intdev01.dbo.b_inventory i\n" +
+                        "JOIN [LJSQLDEVTEST02,1433].calipso_intdev01.dbo.b_place_inventory pi on pi.place_inve_inventory_id = i.inventory_id\n" +
+                        "WHERE pi.place_inve_to_date is null\n" +
+                        "AND i.inventory_serial = PART_PARTIDA_EMP COLLATE Latin1_General_CI_AS)\n" +
+                        "order by newid()";
+
+        String result = "";
+        try {
+            JSONArray rs = Database.executeQueryJSON("dbOleiros", query);
+            result  = Database.getValue(rs,0,"Partida_Empresa");
+            result = result.replace("ID","");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+
+
+
 
     private static String obtenerNroSerieGPSEstandar(){
         String query =
@@ -581,5 +726,13 @@ public class BoxesDB {
         }
 
         return result;
+    }
+
+    private static String obtenerNroSerieGPSMasivo(){
+        return obtenerNroSerieGPSStrixAuto();
+    }
+
+    private static String obtenerNroSerieGPSFull(){
+        return obtenerNroSerieGPSStrixAuto();
     }
 }

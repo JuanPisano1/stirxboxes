@@ -5,5 +5,7 @@ public enum Servicio {
     STRIX_MOTO,
     STRIX_FLOTAS,
     RECUPERO,
-    ESTANDAR
+    ESTANDAR,
+    MASIVO,
+    FULL
 }

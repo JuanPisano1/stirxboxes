@@ -16,6 +16,7 @@ import java.util.Set;
 public class WebBase {
 	// Description: Object declaration
 	protected WebDriver driver;
+	protected WebElement driverElement;
 	private WebDriverWait wait;
 	private FluentWait fluentWait;
 	private Dotenv settings;

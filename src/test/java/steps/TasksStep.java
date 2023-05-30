@@ -1,9 +1,7 @@
 package steps;
 
-import database.business.Servicio;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -14,8 +12,6 @@ import org.testng.annotations.Test;
 import pages.TaskPage;
 import utils.GlobalData;
 
-import java.util.Locale;
-
 @Listeners({ listeners.TestListener.class })
 
 
@@ -25,7 +21,7 @@ public class TasksStep extends BaseStep {
 		taskPage = new TaskPage(Hooks.getRunnerDriver());
 	}
 
-	// STRIX_MOTO|STRIX_AUTO|STRIX_FLOTAS|RECUPERO|ESTANDAR_VLU)
+	// STRIX_MOTO|STRIX_AUTO|STRIX_FLOTAS|RECUPERO|ESTANDAR_VLU|MASIVO)
 	@Given("un turno de Instalacion para la solucion {string}")
 	public void comienzaElTest(String test) {
 		System.out.println("Comienza el test " + test);
@@ -62,6 +58,7 @@ public class TasksStep extends BaseStep {
 	@And("se filtran tareas por vehiculo")
 	public void seFiltranTareasPorVehiculo() {
 		taskPage.searchAVehicle();
+
 	}
 
 	@And("se accede a la tarea de: {string}")
@@ -70,6 +67,9 @@ public class TasksStep extends BaseStep {
 		taskPage.pickTask(opcion);
 		taskPage.assignJob();
 	}
+
+
+
 
 	@And("se agrega el servicio {string}")
 	public void agregarServicioAdicional(String servicio) {
@@ -84,6 +84,11 @@ public class TasksStep extends BaseStep {
 	@And("se registran los datos de Cliente, tipo de cliente: {string}, condición impositiva: {string}")
 	public void registrarDatosDelCliente(String tipoCliente, String condicionImpositiva) {
 		taskPage.registrarDatosCliente(tipoCliente, condicionImpositiva);
+	}
+
+	@And("se registran los datos de Cliente por cia, tipo de cliente: {string}, condición impositiva: {string}")
+	public void registrarDatosDelClienteporcia(String tipoCliente, String condicionImpositiva) {
+		taskPage.registrarDatosClienteporCia(tipoCliente, condicionImpositiva);
 	}
 
 	@And("se registran los datos del Identificable con uso: {string}, color: {string}")
@@ -155,6 +160,10 @@ public class TasksStep extends BaseStep {
 		taskPage.searchAVehicle(dominio);
 	}
 
+	@And("se realiza upgrade de solucion: {string} a solucion: {string}")
+	public void seRealizaUpgradedeSolucion(String original, String nuevo) {
+		taskPage.upgradeSolucion(nuevo);
 
+	}
 
 }

@@ -6,12 +6,12 @@ import locators.InstalacionPageLocators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import utils.GlobalData;
 import utils.LocatorGenerator;
 
 import java.util.List;
-import java.util.Map;
 
 public class InstalacionPage extends BasePage implements InstalacionPageLocators {
 	public InstalacionPage(WebDriver driver) {
@@ -96,11 +96,15 @@ public class InstalacionPage extends BasePage implements InstalacionPageLocators
 
 	}
 	public void completarUbicacionyPosicion(String ubicacion, String posicion) {
+		waitLoading();
 		waitFrameAndSwitch(POPUP_IFRAME);
+		waitLoading();
 		waitClick(By.id("formNumeroSerie:ubicacionPorCriterio"));
+		waitLoading();
 		waitClick(By.xpath("//li[@data-label='" + ubicacion + "']"));
 		waitLoading();
 		waitClick(By.id("formNumeroSerie:posicion_label"));
+		waitLoading();
 		waitClick(By.xpath("//li[@data-label='" + posicion + "']"));
 		waitLoading();
 	}
@@ -185,7 +189,8 @@ public class InstalacionPage extends BasePage implements InstalacionPageLocators
 
 	public void finalizarInstalacion(){
 		waitClick(BOTON_FINALIZAR_INSTALACION);
-		waitClick(BOTON_CONFIRMA_SIN_VALIDAR_EQUIPO);
+		try{
+		waitClick(BOTON_CONFIRMA_SIN_VALIDAR_EQUIPO);}catch (Exception e) {}
 	}
 
 	public void finalizarInstalacionFlotas(){
@@ -193,6 +198,44 @@ public class InstalacionPage extends BasePage implements InstalacionPageLocators
 		waitClick(BOTON_FINALIZAR_INSTALACION);
 	}
 
+
+
+		public void cambioSolucion(String solucion){
+			waitClick(EDITAR_SOLUCION);
+			waitNoClick(By.xpath("//*[@id=\"solucionVendida:j_idt85:j_idt93_dlg\"]/div[2]/iframe"));
+			WebElement iframe = driver.findElement(By.xpath("//*[@id=\"solucionVendida:j_idt85:j_idt93_dlg\"]/div[2]/iframe"));
+			driver.switchTo().frame(iframe);
+			WebElement button = driver.findElement(By.xpath("//*[@id=\"formVenta:solucion\"]/div[3]"));
+			Actions actions = new Actions(driver);
+			actions.moveToElement(button).click().perform();
+			WebElement input = driver.findElement(By.xpath("//*[@id=\"formVenta:solucion_filter\"]"));
+			input.sendKeys("STRIX");
+		    waitClick(By.id("formVenta:solucion_8"));
+			waitType(TEXTO_MOTIVO,solucion);
+			waitClick(BOTON_EDITAR_VENTA);
+			// Cambiar de nuevo al contexto predeterminado
+			driver.switchTo().defaultContent();
+
+			//selectUsingText(COMBOBOX_SOLUCION,solucion); waitType(TEXTO_MOTIVO,solucion); waitClick(BOTON_EDITAR_VENTA);
+
+		}
+
+
+
+	public void accederComercial(String solucion){
+
+		waitClick(BOTON_COMERCIAL);
+
+	}
+
+
+
+
+		/*waitClick(EDITAR_SOLUCION);
+		selectUsingValue(COMBOBOX_SOLUCION,"189");
+		waitType(TEXTO_MOTIVO,solucion);
+		waitClick(BOTON_EDITAR_VENTA);
+		*/
 
 }
 

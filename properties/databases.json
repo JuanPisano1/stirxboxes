@@ -1,12 +1,12 @@
 {
     "dbOleiros": {
-        "server": "LJSQLDEV01.lojackhq.com.ar",
+        "server": "DEVSQL01.lojackhq.com.ar",
         "user": "boxestestapp",
         "password": "V2qHTqkkhD",
         "database": "dbOleiros"
     },
     "Ventas": {
-        "server": "LJSQLDEVTEST02.lojackhq.com.ar:1533",
+        "server": "DEVSQL02:1433",
         "user": "boxestestapp",
         "password": "V2qHTqkkhD",
         "database": "Ventas"
@@ -24,7 +24,7 @@
         "database": "Lojack_vehiculos"
     },
     "dbWorld_Car_Security": {
-        "server": "LJSQLDEV01.lojackhq.com.ar",
+        "server": "DEVSQL01.lojackhq.com.ar",
         "user": "boxestestapp",
         "password": "V2qHTqkkhD",
         "database": "dbWorld_Car_Security"
@@ -36,10 +36,10 @@
         "database": "Lojack"
     },
     "ATyC": {
-        "server": "LJSQLDEV01.lojackhq.com.ar",
+        "server": "DEVSQL01.lojackhq.com.ar",
         "user": "boxestestapp",
         "password": "V2qHTqkkhD",
-        "database": "LJ_ATYC_Legales_dev"
+        "database": "LJ_ATYC_Legales"
     },
     "Boxes": {
         "server": "LJSQLDEVTEST02.lojackhq.com.ar",

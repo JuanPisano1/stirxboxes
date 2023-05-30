@@ -97,4 +97,15 @@ public class InstalacionStep extends BaseStep {
 	public void agregarServicio(String arg0) {
 		instalacionPage.tildarServicioVLU();
 	}
+
+	@And("Selecciona la opcion Editar solucion para realizar cambio de solucion a {string}")
+	public void editarSolucion(String solucion) {
+		instalacionPage.cambioSolucion(solucion);
+	}
+
+	@And("se accede a {string}")
+	public void accederComercial(String solucion){
+
+		instalacionPage.accederComercial(solucion);}
+
 }
