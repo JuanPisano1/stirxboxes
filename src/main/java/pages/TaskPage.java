@@ -178,26 +178,15 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitFrameAndSwitch(By.tagName("iframe"));
         waitLoading();
         waitClick(TIPO_DE_CLIENTE);
-
         waitClick(By.xpath(String.format("//ul[@id='formDetalleCliente:clienteTipoCliente_items']/li[contains(@data-label, '%s')]", tipoCliente)));
-
         waitClick(CONDICION_IMPOSITIVA);
-
         waitClick(By.xpath(String.format("//ul[@id='formDetalleCliente:clienteCondicionImpositiva_items']/li[contains(@data-label, '%s')]", condImpositiva)));
-
         waitClick(GENERO);
-
         waitClick(OPCION_M);
-
         waitClick(GUARDAR_DATOS_GENERALES);
-
         switchBackToDefaultContent();
         waitLoading();
-
-        // 1165142077
-
         String nroTelefono = getAttribute("value", TELEFONO_SIN_NORMALIZAR);
-
         waitClick(AGREGAR_TELEFONO);
         waitLoading();
         waitFrameAndSwitch(By.xpath("//div[@id='tabs:j_idt129:j_idt175:formTelefonos:telefonos:j_idt195_dlg']//iframe"));
@@ -205,7 +194,6 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitClick(TIPO_DE_CONTACTO);
         waitLoading();
         waitClick(CELULAR_TIPO_DE_CONTACTO);
-
         sleepSeconds(2); // NECESARIO
         waitClick(BOTON_TELEFONO);
         waitLoading();

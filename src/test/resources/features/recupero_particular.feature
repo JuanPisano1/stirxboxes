@@ -9,8 +9,8 @@ Feature: Recupero GPS
     And Ingresa credenciales para 'ale' y selecciona ingresar
     Then Valida que se ecuentra en correctamente logueado
 
-  @Recupero
-  Scenario: Instalacion de la solucion 'Recupero GPS' por compania de seguros
+  @RecuperoParticular
+  Scenario: Instalacion de la solucion Recupero GPS para cliente particular
     Given un turno de Instalacion para la solucion "Recupero"
     When se filtran tareas por vehiculo
    #When Selecciona un vehiculo con dominio 'ZZ777EM'
