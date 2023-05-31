@@ -12,7 +12,7 @@ import utils.driverManager.BrowserManager;
         publish = true,
         features = "src/test/resources/features",
         glue = {"steps","hooks"},
-        tags = "@Full",
+        tags = "@Recupero",
         plugin ={ "pretty","json:target/cucumber-reports/CucumberTestReport.json", })
 public class RunnerByTag extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
@@ -20,5 +20,6 @@ public class RunnerByTag extends AbstractTestNGCucumberTests {
     @Parameters({"SettingsFileName"})
     public void setupScenario(String settingsFileName) throws Exception {
         driver = BrowserManager.getDriverInstance(settingsFileName);
+
     }
 }

@@ -31,7 +31,7 @@ Feature: Recupero GPS
     And se registran los datos de la gestion operativa con contrato: "Empresa" y producto: "RECUPERO"
     And se filtran tareas por vehiculo
     And se accede a la tarea de: "Control de SDS"
-    And se registran los datos de Cliente, tipo de cliente: "Cliente por Cia de Seguro", condición impositiva: "Consumidor Final"
+    And se registran los datos de Cliente por cia, tipo de cliente: "Cliente por Cia de Seguro", condición impositiva: "Consumidor Final"
     And se registran los datos del Identificable con uso: "41 - TRANSPORTE", color: "8 - AZUL"
     And se registran los datos de Facturacion
     And se registran los datos de Operaciones

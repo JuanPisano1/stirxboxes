@@ -171,7 +171,7 @@ public class TaskPage extends BasePage implements TaskPageLocators {
 
 
     @Step("Tomar tarea Control SDS")
-    public void registrarDatosCliente(String tipoCliente, String condImpositiva){
+    public void registrarDatosCliente(String tipoCliente, String condImpositiva) {
 
         waitClick(EDITAR_DATOS_GENERALES);
         waitLoading();
@@ -179,7 +179,7 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitLoading();
         waitClick(TIPO_DE_CLIENTE);
 
-        waitClick(By.xpath(String.format("//ul[@id='formDetalleCliente:clienteTipoCliente_items']/li[contains(@data-label, '%s')]",tipoCliente)));
+        waitClick(By.xpath(String.format("//ul[@id='formDetalleCliente:clienteTipoCliente_items']/li[contains(@data-label, '%s')]", tipoCliente)));
 
         waitClick(CONDICION_IMPOSITIVA);
 
@@ -212,15 +212,18 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         switchBackToDefaultContent();
         //*[@id="telefono:j_idt46_dlg"]/div[2]/iframe
         waitFrameAndSwitch(By.xpath("//div[@id='telefono:j_idt46_dlg']//iframe"));
-        waitType(NUMERO_,nroTelefono);
+        waitType(NUMERO_, nroTelefono);
         waitClick(BOTON_NORMALIZAR);
         waitLoading();
         waitClick(TILDE_VALIDAR);
         switchBackToDefaultContent();
-        try{
-        waitFrameAndSwitch(By.tagName("iframe"));}catch(Exception e) {}
+        try {
+            waitFrameAndSwitch(By.tagName("iframe"));
+        } catch (Exception e) {
+        }
         waitClick(GUARDAR_TELEFONOS);
     }
+
 
     @Step("Registrar datos del Identificable")
     public void registrarDatosIdentificable(String uso, String color){

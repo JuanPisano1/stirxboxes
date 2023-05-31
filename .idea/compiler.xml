@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="lojack-refactored" />
+        <module name="boxes-test" />
       </profile>
     </annotationProcessing>
   </component>
