@@ -45,11 +45,18 @@
             <artifactId>dotenv-java</artifactId>
             <version>2.3.1</version>
         </dependency>
+        <!-- https://mavenlibs.com/maven/dependency/com.composum.pages/composum-pages-package -->
+        <dependency>
+        <groupId>com.composum.pages</groupId>
+         <artifactId>composum-pages-package</artifactId>
+         <version>1.4.1</version>
+         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.7.0</version>
         </dependency>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -125,11 +132,8 @@
             <artifactId>ez-database</artifactId>
             <version>0.8.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>lojack-refactored</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        
+        
         <dependency>
             <groupId>com.day.cq.mcm</groupId>
             <artifactId>cq-mcm-landingpage</artifactId>
