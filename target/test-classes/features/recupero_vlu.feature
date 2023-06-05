@@ -17,9 +17,9 @@ Feature: Recupero GPS
     And se accede a la tarea de: "Recepción"
     And se accede a la tarea de: "Instalación"
     And Selecciona la opcion 'VLU'
-    And selecciona empresa 'Oleiros'
+    #And selecciona empresa 'Oleiros'
     And obtener nro de serie del GPS para "Recupero"
-    And ingresa numero de serie de 'GPS' valido
+    And ingresa numero de serie de 'VLU' valido
     And completar Ubicacion 'Asiento' y Posicion 'Debajo asiento conductor'
     And valida que 'Recupero Vehicular' tenga tilde verde
     And edita el kilometraje
@@ -42,13 +42,13 @@ Feature: Recupero GPS
     And Realizar Cierre
    #When se prueban asserts con Dominio: "ZZ777EM" Solicitud ID: "482550662" DNI: "03051300" GPS: "900100000000286" VLU: ""
     Then se imprimen los datos de la prueba y se espera 20 segundos
-    And se verifica en Calipso que el equipo "GPS" haya quedado asociado al vehiculo
+    And se verifica en Calipso que el equipo "VLU" haya quedado asociado al vehiculo
     And se verifica en Calipso el plan "PL_RECUPERO" y el servicio "SE_RECUPERO". Company ID "COM_CARSECURITY"
 #   And se verifica en Calipso el plan "PL_RECUPERO_SPONSOR" y el servicio "SE_RECUPERO". Company ID "COM_CARSECURITY"
     And se verifican en Calipso los datos del vehiculo. Company ID "COM_CARSECURITY"
     And se verifica en Vehiculos el alta del cliente: Company ID "COM_CARSECURITY", Nombre y apellido del cliente "RATON", "PEREZ"
     And se verifica en Vehiculos la relación del vehiculo y el equipo "GPS"
-    And se verifica en Plataforma el consumo de la partida instalada. Dispositivo "GPS"
+    And se verifica en Plataforma el consumo de la partida instalada. Dispositivo "VLU"
     And se verifica en ATyC la generacion de la SDS y el envio por mail
     And se verifica en Turnos el cierre de la solicitud
     And se verifica en Boxes el estado "Completed" de la tarea "Venta - Recepción"
