@@ -4,7 +4,6 @@ Feature: Recupero GPS
   Background:
    Given Genera una solicitud para el servicio "Recupero" y espera 60 segundos
    # Given un turno de Instalacion para la solucion "RECUPERO"
-
     When Ingresa a la pagina de Boxes
     And Selecciona opcion login
     And Ingresa credenciales para 'ale' y selecciona ingresar

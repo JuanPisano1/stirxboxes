@@ -275,6 +275,7 @@ public class TaskPage extends BasePage implements TaskPageLocators {
 
         try {
             waitClick(SIN_MEDIO_DE_PAGO);
+            waitLoading();
             waitClick(GUARDAR_FORMA_DE_PAGO);
         }catch (Exception e){}
 

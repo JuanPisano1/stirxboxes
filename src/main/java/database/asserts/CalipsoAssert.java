@@ -76,4 +76,22 @@ public class CalipsoAssert {
         return true;
     }
 
+
+    public static Boolean verificarTipoDeCliente(String nroDocumento, String vehiculoDominio, String companyID, String chasis, String motor){
+        // Controlar cliente - Obtener customer ID
+        String customerId = CalipsoDB.obtenerCustomerID(nroDocumento);
+
+        // Controlar los datos del vehículo
+        JSONArray resultVehiculo = CalipsoDB.obtenerVehiculo(customerId, vehiculoDominio, companyID);
+
+        String resultChasis = Database.getValue(resultVehiculo,0,"place_vehicle_chassis");
+        String resultMotor = Database.getValue(resultVehiculo,0,"place_vehicle_engine");
+
+        if(!chasis.equalsIgnoreCase(resultChasis) || !motor.equalsIgnoreCase(resultMotor)){
+            return false;
+        }
+
+        return true;
+    }
+
 }

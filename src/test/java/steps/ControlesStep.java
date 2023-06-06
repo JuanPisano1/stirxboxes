@@ -16,15 +16,15 @@ import static utils.GlobalData.*;
 public class ControlesStep extends BaseStep {
     @And("se verifica en Calipso que el equipo {string} haya quedado asociado al vehiculo")
     public void seVerificaEnCalipsoEquipoYVehiculo(String tipoDeDispositivo) throws InterruptedException {
-        switch (tipoDeDispositivo){
+        switch (tipoDeDispositivo) {
             case "GPS":
-                Assert.assertTrue(CalipsoAssert.verificarEquipoVehiculo(nroDeDocumento, "ID"+nroSerieGPS, vehiculoDominio));
+                Assert.assertTrue(CalipsoAssert.verificarEquipoVehiculo(nroDeDocumento, "ID" + nroSerieGPS, vehiculoDominio));
                 break;
             case "VLU":
                 Assert.assertTrue(CalipsoAssert.verificarEquipoVehiculo(nroDeDocumento, nroSerieVLU, vehiculoDominio));
                 break;
             default:
-                throw new IllegalStateException("Dispositivo no encontrado: " + tipoDeDispositivo+ "\nDispositivos disponibles: 'GPS', 'VLU'");
+                throw new IllegalStateException("Dispositivo no encontrado: " + tipoDeDispositivo + "\nDispositivos disponibles: 'GPS', 'VLU'");
         }
     }
 
@@ -46,7 +46,7 @@ public class ControlesStep extends BaseStep {
 
     @And("se verifica en Vehiculos el alta del cliente: Company ID {string}, Nombre y apellido del cliente {string}, {string}")
     public void seVerificaEnLaBaseDeVehiculosAltaDelClienteyVehiculo(String companyID, String nombreCliente, String apellidoCliente) {
-        Assert.assertTrue(VehiculosAssert.ciaSegurosExisteCliente(vehiculoDominio, nroDeDocumento,companyID,apellidoCliente,nombreCliente));
+        Assert.assertTrue(VehiculosAssert.ciaSegurosExisteCliente(vehiculoDominio, nroDeDocumento, companyID, apellidoCliente, nombreCliente));
     }
 
     @And("se verifica en Vehiculos la relación del vehiculo y el equipo {string}")
@@ -56,7 +56,7 @@ public class ControlesStep extends BaseStep {
 
     @And("se verifica en Plataforma el consumo de la partida instalada. Dispositivo {string}")
     public void seVerificaEnPlataformaElConsumoDeLaPartidaInstalada(String tipoDispositivo) {
-        switch(tipoDispositivo){
+        switch (tipoDispositivo) {
             case "GPS":
                 Assert.assertTrue(PlataformaAssert.seDescontoStock(tipoDispositivo, nroSerieGPS));
                 break;
@@ -86,15 +86,14 @@ public class ControlesStep extends BaseStep {
 
     @Then("se prueban asserts con Dominio: {string} Solicitud ID: {string} DNI: {string} GPS: {string} VLU: {string}")
     public void seVerificanAssertsConLosDatosDominioSolicitudIDDNI(String dominio, String nroSolicitud, String dni, String gps, String vlu) {
-        GlobalData.vehiculoDominio= dominio;
+        GlobalData.vehiculoDominio = dominio;
         GlobalData.nroSolicitud = nroSolicitud;
         GlobalData.nroDeDocumento = dni;
-        GlobalData.chasis = "CHA_"+nroSolicitud;
-        GlobalData.motor = "MOT_"+nroSolicitud;
+        GlobalData.chasis = "CHA_" + nroSolicitud;
+        GlobalData.motor = "MOT_" + nroSolicitud;
         GlobalData.nroSerieGPS = gps;
         GlobalData.nroSerieVLU = vlu;
     }
-
 
     @Then("se imprimen los datos de la prueba y se espera {int} segundos")
     public void seEsperanSegundos(int segundos) throws InterruptedException {
@@ -107,6 +106,7 @@ public class ControlesStep extends BaseStep {
         System.out.println("Nro. Solicitud: "+nroSolicitud);
         System.out.println("Nro. Chasis: "+chasis);
         System.out.println("Nro. Motor: "+motor);
+
 
         Thread.sleep(segundos*1000);
     }

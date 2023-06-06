@@ -9,7 +9,7 @@ Feature: Strix Auto
     And Ingresa credenciales para 'ale' y selecciona ingresar
     Then Valida que se ecuentra en correctamente logueado
 
-  @StrixAuto
+  @StrixAutoClientePorCia
   Scenario: Instalacion de la solucion Strix Auto
     Given un turno de Instalacion para la solucion "STRIX_AUTO"
     When se filtran tareas por vehiculo
