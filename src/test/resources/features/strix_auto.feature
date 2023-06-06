@@ -20,7 +20,8 @@ Feature: Strix Auto
     And selecciona empresa 'Oleiros'
     And obtener nro de serie del GPS para "STRIX_AUTO"
     And ingresa numero de serie de 'GPS' valido
-    And completar Ubicacion 'Piso' y Posicion 'Piso conductor'
+    And completar Ubicacion 'Asiento' y Posicion 'Debajo asiento conductor'
+    # And completar Ubicacion 'Piso' y Posicion 'Piso conductor'
     And valida que 'Recupero Vehicular' tenga tilde verde
     And edita el kilometraje
     And valida el numero de serie del GPS en el resumen
