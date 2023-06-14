@@ -12,7 +12,7 @@ public interface InstalacionPageLocators {
     By BOTON_VALIDAR_GPS=By.id("formUbicacion:botonValidar");
     By BOTON_VALIDAR_VLU=By.xpath("//button/span[contains(text(),'Validar VLU')]");
 
-    By CHECKBOX_SERVICIO_VLU=By.xpath("//li[contains(text(),'Recupero VLU')]/div[contains(@class,'ui-chkbox')]");
+    //By CHECKBOX_SERVICIO_VLU=By.xpath("//li[contains(text(),'Recupero VLU')]/div[contains(@class,'ui-chkbox')]"); comento este localizador para mejorarlo y entre como parametro en metodo tildarServicioVLU()
     By BOTON_CONFIRMA_SIN_VALIDAR_EQUIPO=By.id("j_idt29:j_idt34");
     By BOTON_FINALIZAR_INSTALACION=By.id("botones:j_idt372");
 

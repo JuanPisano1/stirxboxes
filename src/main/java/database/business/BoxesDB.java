@@ -55,6 +55,8 @@ public class BoxesDB {
         switch (servicio){
             case ESTANDAR:
                 return obtenerNroSerieVLUEstandar();
+            case RECUPERO:
+                return obtenerNroSerieVLURecupero();
             default:
                 throw new IllegalStateException("No se puede obtener Nro. de serie del VLU. Servicio no encontrado: " + servicio+ "\nServicios disponibles: 'ESTANDAR_VLU'");
         }
@@ -634,6 +636,37 @@ public class BoxesDB {
 
 
     private static String obtenerNroSerieVLUEstandar(){
+        String query =
+                "SELECT PART_PARTIDA_EMP Partida_Empresa\n" +
+                        "FROM STOC_ARTS\n" +
+                        "JOIN STOC_PART ON PART_ARTICULO = ARTS_ARTICULO\n" +
+                        "JOIN STOC_SDPP ON SDPP_PARTIDA = PART_PARTIDA\n" +
+                        "JOIN STOC_DPOS ON DPOS_DEPOSITO = SDPP_DEPOSITO\n" +
+                        "JOIN STOC_STDP ON STDP_ARTICULO = ARTS_ARTICULO AND STDP_DEPOSITO = SDPP_DEPOSITO\n" +
+                        "JOIN STOC_CA05 ON ARTS_CLASIF_5 = STOC_CA05.CA05_CLASIF_5\n" +
+                        "WHERE PART_CLASIF_1 IN ('ains','nuev')\n" +
+                        "AND SDPP_STOCK_ACT > 0\n" +
+                        "AND STDP_STOCK_ACT > 0\n" +
+                        "AND SDPP_DEPOSITO = 179\n" +
+                        "ORDER BY NEWID()";
+
+        String result = "";
+        try {
+            JSONArray rs = Database.executeQueryJSON("dbWorld_Car_Security", query);
+            result  = Database.getValue(rs,0,"Partida_Empresa");
+            result = result.replace("ID","");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    private static String obtenerNroSerieVLURecupero(){
         String query =
                 "SELECT PART_PARTIDA_EMP Partida_Empresa\n" +
                         "FROM STOC_ARTS\n" +

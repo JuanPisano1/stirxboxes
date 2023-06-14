@@ -52,7 +52,7 @@ public class PlataformaDB {
                // "SELECT count(1) as count"
                         + " from dbo.stoc_part p"
                         + "   left join dbo.stoc_sdpp sdpp on sdpp.sdpp_partida = p.part_partida"
-                        + "  where p.part_partida_emp = '<NRO_SERIE_VLU>' and sdpp.sdpp_stock_act not like 0";
+                        + "  where p.part_partida_emp = '<NRO_SERIE_VLU>'"; //and sdpp.sdpp_stock_act not like 0"; comento esta linea
 
 
         query = query.replace("<NRO_SERIE_VLU>", nroSerieVLU);

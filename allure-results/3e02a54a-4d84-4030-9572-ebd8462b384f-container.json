@@ -1,0 +1,1 @@
+{"uuid":"3e02a54a-4d84-4030-9572-ebd8462b384f","name":"boxes-test","children":["434bf305-1fb2-4045-9641-af07976347b4"],"befores":[{"name":"setupScenario","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1686776082870,"stop":1686776084953}],"afters":[],"start":1686776082856,"stop":1686776194783}

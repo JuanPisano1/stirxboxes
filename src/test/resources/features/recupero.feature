@@ -41,7 +41,7 @@ Feature: Recupero GPS
     And se filtran tareas por vehiculo
     And se accede a la tarea de: "Cierre"
     And Realizar Cierre
-   #When se prueban asserts con Dominio: "ZZ777EM" Solicitud ID: "482550662" DNI: "03051300" GPS: "900100000000286" VLU: ""
+   #When se prueban asserts con Dominio: "ZZ309KK" Solicitud ID: "482561267" DNI: "14061813" GPS: "900100000000252" VLU: ""
     Then se imprimen los datos de la prueba y se espera 20 segundos
     And se verifica en Calipso que el equipo "GPS" haya quedado asociado al vehiculo
     And se verifica en Calipso el plan "PL_RECUPERO" y el servicio "SE_RECUPERO". Company ID "COM_CARSECURITY"

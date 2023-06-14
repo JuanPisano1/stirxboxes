@@ -1,5 +1,5 @@
 @WholeBoxesFeature
-Feature: Strix Auto
+Feature: Strix Auto Cia
 
   Background:
    # Given Genera una solicitud para el servicio "STRIX_AUTO" y espera 60 segundos

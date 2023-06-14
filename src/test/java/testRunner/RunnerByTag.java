@@ -12,7 +12,7 @@ import utils.driverManager.BrowserManager;
         publish = true,
         features = "src/test/resources/features",
         glue = {"steps","hooks"},
-        tags = "@StrixAutoClientePorCia",
+        tags = "@RecuperoVlu",
         plugin ={ "pretty","json:target/cucumber-reports/CucumberTestReport.json", })
 public class RunnerByTag extends AbstractTestNGCucumberTests {
     public static WebDriver driver;

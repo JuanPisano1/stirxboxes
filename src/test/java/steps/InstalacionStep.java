@@ -95,7 +95,7 @@ public class InstalacionStep extends BaseStep {
 
 	@And("agregar servicio {string}")
 	public void agregarServicio(String arg0) {
-		instalacionPage.tildarServicioVLU();
+		instalacionPage.tildarServicioVLU(arg0);
 	}
 
 	@And("Selecciona la opcion Editar solucion para realizar cambio de solucion a {string}")
