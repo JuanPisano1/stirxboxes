@@ -98,7 +98,7 @@ public class ControlesStep extends BaseStep {
     @Then("se imprimen los datos de la prueba y se espera {int} segundos")
     public void seEsperanSegundos(int segundos) throws InterruptedException {
         LandingPage landingPage = new LandingPage(Hooks.getRunnerDriver());
-        landingPage.visitWaitPage("Ejecutando asserts en base de datos", 30);
+        landingPage.visitWaitPage("Ejecutando asserts en base de datos", 20);
         System.out.println("Nro. Documento: "+nroDeDocumento);
         System.out.println("Nro. Serie GPS: "+nroSerieGPS);
         System.out.println("Nro. Serie VLU: "+nroSerieVLU);

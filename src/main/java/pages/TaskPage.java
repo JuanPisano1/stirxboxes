@@ -429,7 +429,8 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitFrameAndSwitch(POPUP_IFRAME);
         waitLoading();
         waitClick(COMBO_UPGRADE_SOLUCION);
-        waitClick(By.id("formVenta:solucion_7"));
+       // waitClick(By.id("formVenta:solucion_7"));
+        waitClick(LocatorGenerator.addMissignValue(OPCION_COMBO, solucion));
         waitLoading();
         /*
         try {
