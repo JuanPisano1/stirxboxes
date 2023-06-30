@@ -1,5 +1,5 @@
 @WholeBoxesFeature
-Feature: Masivo
+Feature: Full
   Background:
     Given Genera una solicitud para el servicio "FULL" y espera 60 segundos
     #Given un turno de Instalacion para la solucion "MASIVO"

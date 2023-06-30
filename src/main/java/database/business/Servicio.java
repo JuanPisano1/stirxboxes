@@ -7,5 +7,6 @@ public enum Servicio {
     RECUPERO,
     ESTANDAR,
     MASIVO,
-    FULL
+    FULL,
+    FULL_ANTIJAMMING_ADR
 }

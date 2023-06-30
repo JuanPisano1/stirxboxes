@@ -106,6 +106,12 @@ public class InstalacionStep extends BaseStep {
 	@And("se accede a {string}")
 	public void accederComercial(String solucion){
 
-		instalacionPage.accederComercial(solucion);}
+		instalacionPage.accederComercial(solucion);
+	}
+
+	@And("se agrega el sensor {string}")
+	public void agregarSensor(String arg0) {
+		instalacionPage.agregarSensorGps(arg0);
+	}
 
 }

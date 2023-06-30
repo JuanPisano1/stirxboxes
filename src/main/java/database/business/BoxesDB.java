@@ -46,6 +46,8 @@ public class BoxesDB {
                 return obtenerNroSerieGPSMasivo();
             case FULL:
                 return obtenerNroSerieGPSFull();
+            case FULL_ANTIJAMMING_ADR:
+                return obtenerNroSerieGPSFullJammingAdr();
             default:
                 throw new IllegalStateException("No se puede obtener Nro. de serie del GPS. Servicio no encontrado: " + servicio+ "\nServicios disponibles: 'RECUPERO', 'STRIX_AUTO', 'STRIX_MOTO', 'STRIX_FLOTAS', 'ESTANDAR_VLU'");
         }
@@ -633,6 +635,50 @@ public class BoxesDB {
         return result;
     }
 
+    private static String obtenerNroSerieGPSFullAntijammingAdr(){
+        String query =
+                "SELECT TOP 1 PART_PARTIDA_EMP Partida_Empresa\n" +
+                        "FROM STOC_ARTS\n" +
+                        "JOIN STOC_PART ON PART_ARTICULO = ARTS_ARTICULO\n" +
+                        "JOIN STOC_SDPP ON SDPP_PARTIDA = PART_PARTIDA\n" +
+                        "JOIN STOC_DPOS ON DPOS_DEPOSITO = SDPP_DEPOSITO\n" +
+                        "JOIN STOC_STDP ON STDP_ARTICULO = ARTS_ARTICULO AND STDP_DEPOSITO = SDPP_DEPOSITO\n" +
+                        "JOIN STOC_CA05 ON ARTS_CLASIF_5 = STOC_CA05.CA05_CLASIF_5\n" +
+                        "WHERE PART_CLASIF_1='NNS'\n" +
+                        "AND SDPP_STOCK_ACT > 0\n" +
+                        "AND STDP_STOCK_ACT > 0\n" +
+                        "AND SDPP_DEPOSITO = 179\n" +
+                        "AND PART_ARTICULO =  1866\n" +
+                        "AND ARTS_ARTICULO_EMP IN ('KCARGMT','KCHGS15','KGMT200','KGPS15M','KGPSS15','KIT10DS',\n" +
+                        "'KIT15DS','KIT16DS','KIT2630','KITCAR2','KITGE10','KITGE11','KITGS16','KITQ200',\n" +
+                        "'KITS6FW','KITS6SS','KLMU200','KS15MDS','KTG2630','KTGG200','KTGS15B','KTLMU2')\n" +
+                        "AND NOT EXISTS\n" +
+                        "(SELECT *\n" +
+                        "FROM [LJSQLDEVTEST02,1433].calipso_intdev01.dbo.b_inventory i\n" +
+                        "JOIN [LJSQLDEVTEST02,1433].calipso_intdev01.dbo.b_place_inventory pi on pi.place_inve_inventory_id = i.inventory_id\n" +
+                        "WHERE pi.place_inve_to_date is null\n" +
+                        "AND PART_PARTIDA_EMP like 'ID900%'\n"+
+                        "AND i.inventory_serial = PART_PARTIDA_EMP COLLATE Latin1_General_CI_AS)\n" +
+                        "ORDER BY NEWID()";
+//        GPS SERIAL NUMBER: 900000000000197
+
+
+        String result = "";
+        try {
+            JSONArray rs = Database.executeQueryJSON("dbOleiros", query);
+            result  = Database.getValue(rs,0,"Partida_Empresa");
+            result = result.replace("ID","");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 
 
     private static String obtenerNroSerieVLUEstandar(){
@@ -679,6 +725,7 @@ public class BoxesDB {
                         "AND SDPP_STOCK_ACT > 0\n" +
                         "AND STDP_STOCK_ACT > 0\n" +
                         "AND SDPP_DEPOSITO = 179\n" +
+                        "AND PART_ARTICULO = 700\n" +
                         "ORDER BY NEWID()";
 
         String result = "";
@@ -767,5 +814,9 @@ public class BoxesDB {
 
     private static String obtenerNroSerieGPSFull(){
         return obtenerNroSerieGPSStrixAuto();
+    }
+
+    private static String obtenerNroSerieGPSFullJammingAdr(){
+        return obtenerNroSerieGPSFullAntijammingAdr();
     }
 }

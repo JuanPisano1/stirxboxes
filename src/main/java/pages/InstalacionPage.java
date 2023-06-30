@@ -96,7 +96,6 @@ public class InstalacionPage extends BasePage implements InstalacionPageLocators
 
 	}
 	public void completarUbicacionyPosicion(String ubicacion, String posicion) {
-		waitLoading();
 		waitFrameAndSwitch(POPUP_IFRAME);
 		waitLoading();
 		waitClick(By.id("formNumeroSerie:ubicacionPorCriterio"));
@@ -104,7 +103,6 @@ public class InstalacionPage extends BasePage implements InstalacionPageLocators
 		waitClick(By.xpath("//li[@data-label='" + ubicacion + "']"));
 		waitLoading();
 		waitClick(By.id("formNumeroSerie:posicion_label"));
-		waitLoading();
 		waitClick(By.xpath("//li[@data-label='" + posicion + "']"));
 		waitLoading();
 	}
@@ -229,14 +227,12 @@ public class InstalacionPage extends BasePage implements InstalacionPageLocators
 
 	}
 
-
-
-
-		/*waitClick(EDITAR_SOLUCION);
-		selectUsingValue(COMBOBOX_SOLUCION,"189");
-		waitType(TEXTO_MOTIVO,solucion);
-		waitClick(BOTON_EDITAR_VENTA);
-		*/
+	public void agregarSensorGps(String servicio){
+		waitClick(By.xpath("//*[@id='gpss:0:gpsInstalado:formArticulosInstalados:articulosInstalables_label']"));
+		waitClick(LocatorGenerator.addMissignValue(By.xpath("//li[contains(text(), '%s')]"), servicio));
+		waitClick(By.xpath("//*[@id='gpss:0:gpsInstalado:formArticulosInstalados:j_idt282']"));
+		waitLoading();
+	}
 
 }
 
