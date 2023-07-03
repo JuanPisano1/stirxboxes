@@ -13,9 +13,11 @@ Feature: Estandar + VLU
   Scenario: Instalacion de la solucion 'Estandar' con servicio adicional Recupero VLU
     Given un turno de Instalacion para la solucion "ESTANDAR"
     When se filtran tareas por vehiculo
-   # When Selecciona un vehiculo con dominio 'ZZ915PI'
+    #When Selecciona un vehiculo con dominio 'ZZ580XG'
+
     And se accede a la tarea de: "Recepción"
     And se accede a la tarea de: "Instalación"
+
     And se agrega el servicio "Recupero VLU"
     And Selecciona la opcion 'GPS'
     And selecciona empresa 'Oleiros'
@@ -48,7 +50,7 @@ Feature: Estandar + VLU
     And se filtran tareas por vehiculo
     And se accede a la tarea de: "Cierre"
     And Realizar Cierre
-    #When se prueban asserts con Dominio: "ZZ915PI" Solicitud ID: "482561431" DNI: "04051308" GPS: "900100000000099" VLU: "99AA162"
+    #When se prueban asserts con Dominio: "ZZ667AK" Solicitud ID: "482550685" DNI: "04051308" GPS: "900100000000231" VLU: "0DC8AB5"
     Then se imprimen los datos de la prueba y se espera 20 segundos
     And se verifica en Calipso que el equipo "GPS" haya quedado asociado al vehiculo
     And se verifica en Calipso que el equipo "VLU" haya quedado asociado al vehiculo

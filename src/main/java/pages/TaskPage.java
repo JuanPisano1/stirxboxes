@@ -104,7 +104,12 @@ public class TaskPage extends BasePage implements TaskPageLocators {
         waitLoading();
     }
 
-
+    public void agregarServicioGps(String servicio){
+        waitClick(By.xpath("//label[@id='solucionVendida:j_idt85:serviciosAdicionales_label']"));
+        waitClick(RECUPERO_GPS);
+        waitClick(By.xpath("//button[@id='solucionVendida:j_idt85:j_idt131']"));
+        waitLoading();
+    }
 
 
     @Step("Elegir contrato")

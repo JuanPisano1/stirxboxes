@@ -76,6 +76,11 @@ public class TasksStep extends BaseStep {
 		taskPage.agregarServicio(servicio);
 	}
 
+	@And("se agrega el servicio Gps {string}")
+	public void agregarServicioAdicionalRecuperoGps(String servicio) {
+		taskPage.agregarServicioGps(servicio);
+	}
+
 	@And("se registran los datos de la gestion operativa con contrato: {string} y producto: {string}")
 	public void registrarGestionOperativa(String contrato, String producto) {
 		taskPage.registrarEmpresaYProducto(contrato,producto);

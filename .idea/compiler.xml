@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Proyecto Boxes" />
+        <module name="COPIA PROYECTO BOXES" />
         <module name="lojack-refactored" />
         <module name="boxes-test" />
       </profile>

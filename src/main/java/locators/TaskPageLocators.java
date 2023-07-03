@@ -96,7 +96,7 @@ public interface TaskPageLocators {
     By OPCION_CLAS1 = By.xpath("//li[@id='j_idt131:j_idt132:gestionDeCalidadClasificacion1_1' and @data-label='Bueno']");
     By COMBO_CLAS2 = By.xpath( "//div[@id= 'j_idt131:j_idt132:gestionDeCalidadClasificacion2']");
     By OPCION_CLAS2 = By.xpath("//li[@id='j_idt131:j_idt132:gestionDeCalidadClasificacion2_1' and @data-label='%s']");
-
+    By RECUPERO_GPS = By.id("solucionVendida:j_idt85:serviciosAdicionales_1");
     By EDITAR_UPGRADE_SOLUCION=By.id("tabs:j_idt314:formDatosComerciales:j_idt366:j_idt389");
     By POPUP_IFRAME=By.tagName("iframe");
     By COMBO_UPGRADE_SOLUCION=By.id("formVenta:solucion");
