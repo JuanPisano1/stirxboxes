@@ -25,6 +25,8 @@ public interface TaskPageLocators {
     By OPCION_CONTRATO = By.id("gestionOperativa:contrato_1");
     By COMBO_PRODUCTO = By.id("gestionOperativa:producto_label");
     By OPCION_PRODUCTO = By.id("gestionOperativa:producto_1");
+
+
     By BOTON_ACEPTAR_INSTALACION = By.id("botones:j_idt557");
     By EDITAR_DATOS_GENERALES = By.id("tabs:j_idt129:formDatosCliente:j_idt150");
     By TIPO_DE_CLIENTE = By.id("formDetalleCliente:clienteTipoCliente_label");

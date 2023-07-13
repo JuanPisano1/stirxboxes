@@ -14,21 +14,21 @@ Feature: Strix Auto Cia
     Given un turno de Instalacion para la solucion "STRIX_AUTO"
     When se filtran tareas por vehiculo
    When Selecciona un vehiculo con dominio 'ZZ439JX'
-#    And se accede a la tarea de: "Recepción"
-#    And se accede a la tarea de: "Instalación"
-#    And Selecciona la opcion 'GPS'
-#    And selecciona empresa 'Oleiros'
-#    And obtener nro de serie del GPS para "STRIX_AUTO"
-#    And ingresa numero de serie de 'GPS' valido
-#    And completar Ubicacion 'Piso' y Posicion 'Piso conductor'
-#    And valida que 'Recupero Vehicular' tenga tilde verde
-#    And edita el kilometraje
-#    And valida el numero de serie del GPS en el resumen
-#    And finaliza la instalacion
-#    And se filtran tareas por vehiculo
-#    And se accede a la tarea de: "Verificación"
-#    And se registran los datos de la gestion operativa con contrato: "Oleiros" y producto: "STRIX"
-#    And se filtran tareas por vehiculo
+    And se accede a la tarea de: "Recepción"
+    And se accede a la tarea de: "Instalación"
+    And Selecciona la opcion 'GPS'
+    And selecciona empresa 'Oleiros'
+    And obtener nro de serie del GPS para "STRIX_AUTO"
+    And ingresa numero de serie de 'GPS' valido
+    And completar Ubicacion 'Piso' y Posicion 'Piso conductor'
+    And valida que 'Recupero Vehicular' tenga tilde verde
+    And edita el kilometraje
+    And valida el numero de serie del GPS en el resumen
+    And finaliza la instalacion
+    And se filtran tareas por vehiculo
+    And se accede a la tarea de: "Verificación"
+    And se registran los datos de la gestion operativa con contrato: "Oleiros" y producto: "STRIX"
+    And se filtran tareas por vehiculo
     And se accede a la tarea de: "Control de SDS"
 #    And se registran los datos de Cliente por cia, tipo de cliente: "Cliente por Cia de Seguro", condición impositiva: "Consumidor Final"
     And se registran los datos del Identificable con uso: "41 - TRANSPORTE", color: "8 - AZUL"

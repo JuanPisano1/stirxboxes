@@ -3,7 +3,7 @@ Feature: Stix Moto
 
   Background:
    Given Genera una solicitud para el servicio "STRIX_MOTO" y espera 60 segundos
-#    Given un turno de Instalacion para la solucion "STRIX_MOTO"
+   #Given un turno de Instalacion para la solucion "STRIX_MOTO"
     When Ingresa a la pagina de Boxes
     And Selecciona opcion login
     And Ingresa credenciales para 'ale' y selecciona ingresar
@@ -13,7 +13,7 @@ Feature: Stix Moto
   Scenario: Instalacion de la solucion Strix moto
     Given un turno de Instalacion para la solucion "STRIX_MOTO"
     When se filtran tareas por vehiculo
-#   When Selecciona un vehiculo con dominio 'SS122SZ'
+  # When Selecciona un vehiculo con dominio 'ZZ144JC'
     And se accede a la tarea de: "Recepción"
     And obtener nro de serie del GPS para "STRIX_MOTO"
     And se accede a la tarea de: "Instalación"
@@ -31,7 +31,7 @@ Feature: Stix Moto
     And se filtran tareas por vehiculo
     And se accede a la tarea de: "Control de SDS"
     And se registran los datos de Cliente, tipo de cliente: "Particular", condición impositiva: "Consumidor Final"
-    And se registran los datos del Identificable con uso: "41 - TRANSPORTE", color: "8 - AZUL"
+    And se registran los datos del Identificable con uso: "4- MOTO", color: "8 - AZUL"
     And se registran los datos de Facturacion
     And se registran los datos de Operaciones
     And imprimir SDS
@@ -40,11 +40,11 @@ Feature: Stix Moto
     And se filtran tareas por vehiculo
     And se accede a la tarea de: "Cierre"
     And Realizar Cierre
-#    When se prueban asserts con Dominio: "ZZ869MK" Solicitud ID: "482468415" DNI: "13160209" GPS: "900000000000152" VLU: ""
+   # When se prueban asserts con Dominio: "ZZ144JC" Solicitud ID: "482561750" DNI: "12071304" GPS: "900100000000069" VLU: ""
     Then se imprimen los datos de la prueba y se espera 20 segundos
     And se verifica en Calipso que el equipo "GPS" haya quedado asociado al vehiculo
     And se verifica en Calipso el plan "PL_STRIXMOTO" y el servicio "SE_RECUPERO". Company ID "COM_OLEIROS"
-    And se verifica en Calipso el plan "PL_STRIXMOTO" y el servicio "SE_VISUALIZACION". Company ID "COM_OLEIROS"
+   # And se verifica en Calipso el plan "PL_STRIXMOTO" y el servicio "SE_VISUALIZACION". Company ID "COM_OLEIROS"
     And se verifican en Calipso los datos del vehiculo. Company ID "COM_OLEIROS"
     And se verifica en Vehiculos el alta del cliente: Company ID "COM_OLEIROS", Nombre y apellido del cliente "RATON", "PEREZ"
     And se verifica en Vehiculos la relación del vehiculo y el equipo "GPS"

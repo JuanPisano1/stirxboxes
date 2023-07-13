@@ -109,6 +109,7 @@ public class InstalacionPage extends BasePage implements InstalacionPageLocators
 
 	public void tildarServicioVLU(String servicio){
 		waitFrameAndSwitch(POPUP_IFRAME);
+		waitLoading();
 		waitClick(By.xpath("//li[contains(text(),'"+ servicio + "')]/div[contains(@class,'ui-chkbox')]"));
 		//waitClick(CHECKBOX_SERVICIO_VLU);
 		switchBackToDefaultContent();

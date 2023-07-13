@@ -39,7 +39,7 @@ Feature: Recupero VLU
     And se filtran tareas por vehiculo
     And se accede a la tarea de: "Cierre"
     And Realizar Cierre
- # When se prueban asserts con Dominio: "ZZ800SU" Solicitud ID: "482561265" DNI: "14061712" GPS: "" VLU: "99AA170"
+# # When se prueban asserts con Dominio: "ZZ800SU" Solicitud ID: "482561265" DNI: "14061712" GPS: "" VLU: "99AA170"
     Then se imprimen los datos de la prueba y se espera 20 segundos
     And se verifica en Calipso que el equipo "VLU" haya quedado asociado al vehiculo
     And se verifica en Calipso el plan "PL_RECUPERO" y el servicio "SE_RECUPERO". Company ID "COM_CARSECURITY"

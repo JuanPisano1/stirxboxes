@@ -16,6 +16,8 @@ public interface InstalacionPageLocators {
     By BOTON_CONFIRMA_SIN_VALIDAR_EQUIPO=By.id("j_idt29:j_idt34");
     By BOTON_FINALIZAR_INSTALACION=By.id("botones:j_idt372");
 
+    By BOTON_VLU =By.id("solucionVendida:j_idt137");
+
     By BOTON_EDITAR_KILOMETRAJE= By.xpath("//button/span[text()='Editar']");
     By INPUT_KILOMETRAJE=By.id("edicionKilometraje:kilometraje");
     By GUARDAR_KILOMETRAJE=By.id("accionesEditarKilometraje:j_idt37");
